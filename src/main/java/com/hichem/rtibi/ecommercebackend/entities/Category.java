@@ -17,19 +17,27 @@ public class Category implements Serializable {
     private Long id;
     private String name;
     private String description;
+    private String photo;
     @OneToMany(mappedBy = "category")
     private Collection<Product> products;
 
     public Category() {
     }
 
-    public Category(String name, String description, Collection<Product> products) {
+    public Category(String name, String description, String photo, Collection<Product> products) {
         this.name = name;
         this.description = description;
+        this.photo = photo;
         this.products = products;
     }
-    public Category(Long id,String name, String description, Collection<Product> products) {
-        this.id=id;
+    public Category(Long id,String name, String description, String photo, Collection<Product> products) {
+        this.name = name;
+        this.description = description;
+        this.photo = photo;
+        this.products = products;
+    }
+
+    public Category(String name, String description, Collection<Product> products) {
         this.name = name;
         this.description = description;
         this.products = products;
@@ -66,5 +74,13 @@ public class Category implements Serializable {
 
     public void setProducts(Collection<Product> products) {
         this.products = products;
+    }
+
+    public String getPhoto() {
+        return photo;
+    }
+
+    public void setPhoto(String photo) {
+        this.photo = photo;
     }
 }

@@ -25,9 +25,9 @@ public class EcommercebackendApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        categoryRepository.save(new Category(null,"Ordinateur",null,null));
-        categoryRepository.save(new Category(null,"Smartphone",null,null));
-        categoryRepository.save(new Category(null,"Tablette",null,null));
+       categoryRepository.save(new Category(null,null,"ordinateur",null,null));
+        categoryRepository.save(new Category(null,null,"printers",null,null));
+        categoryRepository.save(new Category(null,null,"samrtphone",null,null));
         Random random=new Random();
         categoryRepository.findAll().forEach(c->{
             for (int i=0;i<10;i++) {
@@ -37,6 +37,7 @@ public class EcommercebackendApplication implements CommandLineRunner {
                 p.setAvailable(random.nextBoolean());
                 p.setPromotion(random.nextBoolean());
                 p.setSelected(random.nextBoolean());
+                p.setPhotoName("unknown.png");
                 p.setCategory(c);
                 productRepository.save(p);
             }
