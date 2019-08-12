@@ -30,13 +30,17 @@ public class EcommercebackendApplication implements CommandLineRunner {
         categoryRepository.save(new Category(null,"Tablette",null,null));
         Random random=new Random();
         categoryRepository.findAll().forEach(c->{
-            Product p=new Product();
-            p.setName(RandomString.make(18));
-            p.setCurrentPrice(100+random.nextInt(1000));
-            p.setAvailable(random.nextBoolean());
-            p.setPromotion(random.nextBoolean());
-            p.setCategory(c);
-            productRepository.save(p);
+            for (int i=0;i<10;i++) {
+                Product p=new Product();
+                p.setName(RandomString.make(18));
+                p.setCurrentPrice(100+random.nextInt(1000));
+                p.setAvailable(random.nextBoolean());
+                p.setPromotion(random.nextBoolean());
+                p.setSelected(random.nextBoolean());
+                p.setCategory(c);
+                productRepository.save(p);
+            }
+
 
         });
 
