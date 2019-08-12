@@ -20,6 +20,9 @@ public class Category implements Serializable {
     @OneToMany(mappedBy = "category")
     private Collection<Product> products;
 
+    public Category() {
+    }
+
     public Category(String name, String description, Collection<Product> products) {
         this.name = name;
         this.description = description;

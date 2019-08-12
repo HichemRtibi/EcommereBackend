@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.*;
 import java.io.Serializable;
+
 @Entity
 
 public class Product implements Serializable {
@@ -18,7 +19,7 @@ public class Product implements Serializable {
     private double currentPrice;
     private boolean promotion;
     private boolean selected;
-    private double available;
+    private boolean available;
     private String photoName;
     @ManyToOne()
     private Category category;
@@ -27,7 +28,7 @@ public class Product implements Serializable {
 
     }
 
-    public Product(String name, String description, double currentPrice, boolean promotion, boolean selected, double available, String photoName, Category category) {
+    public Product(String name, String description, double currentPrice, boolean promotion, boolean selected, boolean available, String photoName, Category category) {
         this.name = name;
         this.description = description;
         this.currentPrice = currentPrice;
@@ -36,6 +37,10 @@ public class Product implements Serializable {
         this.available = available;
         this.photoName = photoName;
         this.category = category;
+    }
+
+    public boolean isAvailable() {
+        return available;
     }
 
     public Long getId() {
@@ -86,11 +91,8 @@ public class Product implements Serializable {
         this.selected = selected;
     }
 
-    public double getAvailable() {
-        return available;
-    }
 
-    public void setAvailable(double available) {
+    public void setAvailable(boolean available) {
         this.available = available;
     }
 
