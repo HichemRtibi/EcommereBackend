@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.rest.core.config.RepositoryRestConfiguration;
 
 import java.util.Random;
 
@@ -18,6 +19,8 @@ public class EcommercebackendApplication implements CommandLineRunner {
     private CategoryRepository categoryRepository;
     @Autowired
     private ProductRepository productRepository;
+    @Autowired
+    private RepositoryRestConfiguration repositoryRestConfiguration;
 
     public static void main(String[] args) {
         SpringApplication.run(EcommercebackendApplication.class, args);
@@ -25,9 +28,10 @@ public class EcommercebackendApplication implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-       categoryRepository.save(new Category(null,null,"ordinateur",null,null));
-        categoryRepository.save(new Category(null,null,"printers",null,null));
-        categoryRepository.save(new Category(null,null,"samrtphone",null,null));
+        repositoryRestConfiguration.exposeIdsFor(Product.class,Category.class);
+       categoryRepository.save(new Category(null,"ordinateur",null,null,null));
+        categoryRepository.save(new Category(null,"printers",null,null,null));
+        categoryRepository.save(new Category(null,"samrtphone",null,null,null));
         Random random=new Random();
         categoryRepository.findAll().forEach(c->{
             for (int i=0;i<10;i++) {
